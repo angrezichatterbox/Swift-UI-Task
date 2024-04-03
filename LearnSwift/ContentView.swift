@@ -11,21 +11,31 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Selection@*/.constant(1)/*@END_MENU_TOKEN@*/) {
             NavigationView {
-                NavigationLink(destination: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Destination@*/Text("Destination")/*@END_MENU_TOKEN@*/) {  Text("Tab Content 1") }
-                    .navigationTitle("News")
+                    List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                        NavigationLink(destination: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Destination@*/Text("Destination")/*@END_MENU_TOKEN@*/) {
+                            Text("Text")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                            .foregroundColor(Color.black)
+                        }
+                        
+                    }
+                    .navigationTitle("Destinations")
             }
-           .tabItem { Text("News") }.tag(1)
+           .tabItem { Label("Destinations", systemImage: "airplane.departure") }.tag(1)
             NavigationView{
                 NavigationLink(destination: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Destination@*/Text("Destination")/*@END_MENU_TOKEN@*/) {  Text("Tab Content 2") }
-                    .navigationTitle("Products")
+                    .navigationTitle("Experience")
             }
-            .tabItem { Text("Products") }.tag(2)
+            .tabItem { Label("Experience", systemImage: "books.vertical.fill") }.tag(2)
             NavigationView{
                 NavigationLink(destination: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Destination@*/Text("Destination")/*@END_MENU_TOKEN@*/) {  Text("Tab Content 3") }
                     .navigationTitle("Chat")
             }
-           .tabItem { Text("Chat") }.tag(3)
-           
+            .tabItem { Label(
+                title: { Text("Chat") },
+                icon: { Image(systemName: "message.fill") }
+            )}.tag(3)
         }
     }
 }
